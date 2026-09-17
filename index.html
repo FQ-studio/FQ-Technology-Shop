@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FQ Technology Shop | Official Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans leading-relaxed">
+
+    <!-- Navbar -->
+    <nav class="border-b border-slate-800 bg-slate-900/85 backdrop-blur sticky top-0 z-50 px-6 py-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center font-bold text-white text-sm shadow-lg shadow-blue-500/30">FQ</div>
+                <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">FQ Technology Shop</span>
+            </div>
+            <div class="space-x-6 text-sm text-slate-300">
+                <a href="index.html" class="text-blue-400 font-semibold">Home</a>
+                <a href="https://github.com/FQ-studio/FQ-Community/discussions" target="_blank" class="hover:text-blue-400 transition">Community</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
+        <span class="bg-blue-950/60 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-800/50">Proprietary Architecture</span>
+        <h1 class="text-4xl md:text-6xl font-extrabold mt-6">FQ Solo Studio SoC</h1>
+        <p class="mt-4 text-slate-400 text-base md:text-lg max-w-xl mx-auto">The pinnacle of engineering precision. High-performance custom semiconductor solutions built for elite performance.</p>
+    </header>
+
+    <!-- Product Categories Section -->
+    <main class="max-w-5xl mx-auto px-6 py-10">
+        <h2 class="text-xl font-semibold mb-6 text-slate-200">Product Categories</h2>
+        
+        <!-- Category Buttons -->
+        <div class="flex flex-wrap gap-3 mb-8">
+            <button onclick="showCategory('sbc')" id="btn-sbc" class="px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white transition">SBC (Single Board Computer)</button>
+            <button onclick="showCategory('pc')" id="btn-pc" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">PC</button>
+            <button onclick="showCategory('laptop')" id="btn-laptop" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">Laptop</button>
+            <button onclick="showCategory('phone')" id="btn-phone" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">Phone</button>
+            <button onclick="showCategory('tablet')" id="btn-tablet" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">Tablet</button>
+            <button onclick="showCategory('console')" id="btn-console" class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition">Console</button>
+        </div>
+
+        <!-- Display Area -->
+        <div id="product-display" class="bg-slate-900/50 border border-slate-800/80 rounded-2xl p-8 min-h-[250px] flex flex-col items-center justify-center text-center">
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 text-center text-slate-500 text-sm mt-20">
+        <p>© 2026 FQ Studio. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Category Switching -->
+    <script>
+        const products = {
+            sbc: `
+                <span class="bg-blue-950/60 text-blue-400 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-blue-800/50 mb-3">Available Product</span>
+                <h3 class="text-2xl font-bold text-white mb-2">FQ Solo Studio SoC</h3>
+                <p class="text-slate-400 text-sm max-w-md mb-4">High-performance custom semiconductor solutions built for elite single board computer performance.</p>
+                <div class="flex items-center gap-3 mt-2">
+                    <a href="chip/specs.html" class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-2 rounded-xl transition shadow-lg shadow-blue-600/20">View Specifications</a>
+                    <span class="bg-slate-900 border border-slate-800 text-slate-300 px-4 py-2 rounded-xl text-xs font-medium">Closed Source</span>
+                </div>
+            `,
+            pc: `<a href="pc/index.html" class="text-blue-400 hover:underline text-sm italic">Explore PC Division Products</a>`,
+            laptop: `<a href="laptop/index.html" class="text-blue-400 hover:underline text-sm italic">Explore Laptop Division Products</a>`,
+            phone: `<a href="phone/index.html" class="text-blue-400 hover:underline text-sm italic">Explore Phone Division Products</a>`,
+            tablet: `<a href="tablet/index.html" class="text-blue-400 hover:underline text-sm italic">Explore Tablet Division Products</a>`,
+            console: `<a href="console/index.html" class="text-blue-400 hover:underline text-sm italic">Explore Console Division Products</a>`
+        };
+
+        function showCategory(category) {
+            document.getElementById('product-display').innerHTML = products[category];
+            const buttons = ['sbc', 'pc', 'laptop', 'phone', 'tablet', 'console'];
+            buttons.forEach(btn => {
+                const el = document.getElementById('btn-' + btn);
+                if (btn === category) {
+                    el.className = "px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white transition";
+                } else {
+                    el.className = "px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 border border-slate-800 text-slate-400 hover:text-white transition";
+                }
+            });
+        }
+        showCategory('sbc');
+    </script>
+</body>
+</html>
