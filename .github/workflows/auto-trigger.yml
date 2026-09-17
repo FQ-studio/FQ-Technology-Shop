@@ -1,26 +1,26 @@
-name: FQ Auto-Trigger Inventory & Build
+name: Auto Trigger Build & Deploy
 
 on:
   push:
-    paths:
-      - 'chip/**'
-      - 'pc/**'
-      - 'laptop/**'
-      - 'phone/**'
-      - 'tablet/**'
-      - 'console/**'
+    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  verify-build:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
+      - name: Checkout Public Repository
         uses: actions/checkout@v4
 
-      - name: Auto-Detect and Log Changes
+      - name: Checkout Private Chip IP
+        uses: actions/checkout@v4
+        with:
+          repository: 'FQ-studio/FQ-Store-Private-'
+          token: ${{ secrets.PRIVATE_REPO_TOKEN }}
+          path: 'private_chip'
+
+      - name: Verify Secure IP Access
         run: |
-          echo "=== FQ STUDIO AUTO-TRIGGER NOTIFICATION ==="
-          echo "Changes detected inside product/chip folders!"
-          echo "Verifying structural integrity for proprietary architecture..."
-          ls -la chip/
-          echo "Build validation completed successfully."
+          echo "Memeriksa capaian fail peribadi..."
+          ls -la private_chip/
+          echo "Fail IP peribadi berjaya dicapai secara selamat!"
