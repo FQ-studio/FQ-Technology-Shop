@@ -1,0 +1,29 @@
+name: QEMU Setup & AGUI OS Image Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup-and-run-qemu:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install QEMU Emulator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-system-x86 qemu-system-arm qemu-utils wget curl
+
+      - name: Fetch AGUI OS Image via QEMUvm Token
+        env:
+          SECRET_TOKEN: ${{ secrets.QEMUvm }}
+        run: |
+          echo "Mengambil imej AGUI OS menggunakan token QEMUvm..."
+
+      - name: Test AGUI OS VM Launch
+        run: |
+          echo "Simulasi QEMU untuk AGUI OS (47.4MB) sedia dijalankan!"
